@@ -99,6 +99,15 @@ definitions:
         example: 90
         type: integer
     type: object
+  model.UserLogin:
+    properties:
+      password:
+        type: string
+      role:
+        type: string
+      username:
+        type: string
+    type: object
 host: localhost:8088
 info:
   contact:
@@ -275,6 +284,36 @@ paths:
         "500":
           description: Failed to generate token
       summary: Login User
+      tags:
+      - Auth
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Melakukan proses registrasi user baru dengan username, password,
+        dan role.
+      parameters:
+      - description: Register credentials (username, password, dan role)
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/model.UserLogin'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: User registered successfully
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Invalid input atau Username, password, and role are required
+        "409":
+          description: User already exists
+        "500":
+          description: Failed to hash password
+      summary: Register User
       tags:
       - Auth
 schemes:

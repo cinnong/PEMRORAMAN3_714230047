@@ -52,6 +52,18 @@ func Login(c *fiber.Ctx) error {
 	})
 }
 
+// Register godoc
+// @Summary Register User
+// @Description Melakukan proses registrasi user baru dengan username, password, dan role.
+// @Tags Auth
+// @Accept json
+// @Produce json
+// @Param credentials body model.UserLogin true "Register credentials (username, password, dan role)"
+// @Success 201 {object} map[string]interface{} "User registered successfully"
+// @Failure 400 "Invalid input atau Username, password, and role are required"
+// @Failure 409 "User already exists"
+// @Failure 500 "Failed to hash password"
+// @Router /register [post]
 func Register(c *fiber.Ctx) error {
 	var req model.UserLogin
 

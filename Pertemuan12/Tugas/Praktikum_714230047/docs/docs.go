@@ -281,6 +281,50 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/register": {
+            "post": {
+                "description": "Melakukan proses registrasi user baru dengan username, password, dan role.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register User",
+                "parameters": [
+                    {
+                        "description": "Register credentials (username, password, dan role)",
+                        "name": "credentials",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.UserLogin"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input atau Username, password, and role are required"
+                    },
+                    "409": {
+                        "description": "User already exists"
+                    },
+                    "500": {
+                        "description": "Failed to hash password"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -423,6 +467,20 @@ const docTemplate = `{
                 "nilai": {
                     "type": "integer",
                     "example": 90
+                }
+            }
+        },
+        "model.UserLogin": {
+            "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string"
+                },
+                "role": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
                 }
             }
         }
