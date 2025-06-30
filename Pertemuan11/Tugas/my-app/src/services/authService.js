@@ -1,7 +1,9 @@
 import axios from "axios";
 
-const API_URL_LOGIN = "http://127.0.0.1:8088/login";
-const API_URL_REGISTER = "http://127.0.0.1:8088/register";
+const API_URL_LOGIN =
+  "https://backendpraktikum-production-7a9f.up.railway.app/login";
+const API_URL_REGISTER =
+  "https://backendpraktikum-production-7a9f.up.railway.app/register";
 
 export const login = async (username, password) => {
   const response = await axios.post(API_URL_LOGIN, { username, password });
