@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Buat instance axios
 const axiosInstance = axios.create({
-  baseURL: "https://backendpraktikum-production-7a9f.up.railway.app",
+  baseURL: "https://backendpraktikum-production-7a9f.up.railway.app/api",
 });
 
 // Interceptor REQUEST – tambah token secara otomatis
@@ -23,7 +23,7 @@ axiosInstance.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem("token"); // hapus token
-      window.location.href = "/";       // redirect ke login
+      window.location.href = "/"; // redirect ke login
     }
     return Promise.reject(error);
   }
